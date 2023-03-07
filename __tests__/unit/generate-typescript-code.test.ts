@@ -1,6 +1,7 @@
 import {wait} from '../../src/wait'
 import {expect, test} from '@jest/globals'
 import {generateTypeScriptCode} from '../../src/generators/ts/ts-generator'
+import { generateCSharpCode } from "../../src/generators/csharp/csharp-generator";
 
 test('throws invalid number', async () => {
   const input = parseInt('foo', 10)
@@ -17,4 +18,8 @@ test('wait 500 ms', async () => {
 
 test('sample', async () => {
   await generateTypeScriptCode()
+})
+
+test('sample2', async () => {
+  await generateCSharpCode()
 })

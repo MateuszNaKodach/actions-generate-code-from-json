@@ -125,3 +125,4 @@ all: https://github.com/asyncapi/modelina/tree/master/examples
 
 ### TODO:
 - Dockerfile with installed .NET and NodeJS - based for the action
+- Generator - do not focus on what is used... (modelina / quicktype)
