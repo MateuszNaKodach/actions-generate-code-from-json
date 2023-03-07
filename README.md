@@ -113,6 +113,13 @@ in the repository:
 - https://github.com/asyncapi/modelina/tree/master/examples/csharp-use-inheritance
 all: https://github.com/asyncapi/modelina/tree/master/examples
 
+- from json schema to ts output with snapshot testing:
+  https://github.com/asyncapi/modelina/blob/master/examples/json-schema-draft7-from-object/index.ts
+- all models within the same file:
+  https://github.com/asyncapi/modelina/tree/master/examples/generate-all-models-within-the-same-file
+- generate to files
+  https://github.com/asyncapi/modelina/tree/master/examples/generate-to-files
+
 #### Quicktype alternative
 
 

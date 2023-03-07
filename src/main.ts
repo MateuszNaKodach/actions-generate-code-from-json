@@ -1,6 +1,7 @@
 import * as core from '@actions/core'
 import {wait} from './wait'
 import { execSync } from 'child_process';
+import { generateTypeScriptCode } from "./generators/ts/ts-generator";
 
 async function run(): Promise<void> {
   try {
@@ -18,6 +19,9 @@ async function run(): Promise<void> {
     
     // check langugage - if csharp and option package is enabled
     // validate if 
+    await generateTypeScriptCode();
+    
+    
     
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
