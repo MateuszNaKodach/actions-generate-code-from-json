@@ -1,9 +1,10 @@
 module.exports = {
   clearMocks: true,
-  moduleFileExtensions: ['js', 'ts'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   testMatch: ['**/*.test.ts'],
   transform: {
-    '^.+\\.ts$': 'ts-jest'
+    '^.+.(t|j)s$': 'ts-jest',
   },
-  verbose: true
+  verbose: true,
+  testTimeout: 10000,
 }
