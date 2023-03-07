@@ -6,6 +6,18 @@ inputs:
     required: true
     description: 'input description here'
     default: 'default value if applicable'
+  inFiles: # change this
+    required: true
+    description: 'input description here'
+    default: 'default value if applicable'
+  outLanguage: # change this
+    required: true
+    description: 'input description here'
+    default: 'default value if applicable'
+  outMode: # change this - package / one per file / many per file???
+    required: true
+    description: 'input description here'
+    default: 'default value if applicable'
 runs:
   using: 'node16'
   main: 'dist/index.js'
