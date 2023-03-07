@@ -103,3 +103,18 @@ See the [actions tab](https://github.com/actions/typescript-action/actions) for 
 ## Usage:
 
 After testing you can [create a v1 tag](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md) to reference the stable and latest V1 action
+
+
+### Modelina
+https://github.com/asyncapi/modelina#requirements
+
+#### Examples
+in the repository:
+- https://github.com/asyncapi/modelina/tree/master/examples/csharp-use-inheritance
+all: https://github.com/asyncapi/modelina/tree/master/examples
+
+#### Quicktype alternative
+
+
+### TODO:
+- Dockerfile with installed .NET and NodeJS - based for the action
