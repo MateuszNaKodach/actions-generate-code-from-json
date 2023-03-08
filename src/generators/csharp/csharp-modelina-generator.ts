@@ -3,6 +3,7 @@ import {
   ConstrainedDictionaryModel
 } from '@asyncapi/modelina'
 import fs from "fs";
+import { CodeGeneratorConfig, CodeGeneratorResult } from "../shared/code-generator";
 
 const generator = new CSharpFileGenerator({
   collectionType: 'List',
@@ -46,12 +47,13 @@ ${renderer.indent(renderer.renderBlock(content, 2))}
   ]
 })
 
-export async function generateCSharpCode(): Promise<void> {
-  const outDir = "./__tests__/out/message-schema/generated/csharp/modelina";
-  const inDir = "./__tests__/assets";
-
-  const allJsonFiles = fs.readdirSync(inDir).filter((file) => file.includes(".json"));
-  const allJsonSchemas = allJsonFiles.map(file => [file, JSON.parse(fs.readFileSync(`${inDir}/${file}`, 'utf8'))]);
+export async function generateCSharpCodeUsingModelina(config: CodeGeneratorConfig): Promise<CodeGeneratorResult> {
+  // const outDir = "./__tests__/out/message-schema/generated/csharp/modelina";
+  // const inDir = "./__tests__/assets";
+  const jsonSchemas = config.jsonSchemaFiles;
+  
+  const models = await generator.generateCompleteModels()
+  
   await Promise.all(
     allJsonSchemas.map(async ([fileName, jsonSchema]) => {
       const models = await generator.generateToFiles(

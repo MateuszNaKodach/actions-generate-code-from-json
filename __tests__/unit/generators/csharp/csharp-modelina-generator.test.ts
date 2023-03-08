@@ -1,6 +1,6 @@
 import {expect, test} from '@jest/globals'
-import { generateCSharpCode } from "../../../../src/generators/csharp/csharp-modelina-generator";
+import { generateCSharpCodeUsingModelina } from "../../../../src/generators/csharp/csharp-modelina-generator";
 
 test('[Unit] Generator | CSharp | Modelina (AsyncAPI)', async () => {
-  await generateCSharpCode()
+  await generateCSharpCodeUsingModelina()
 })

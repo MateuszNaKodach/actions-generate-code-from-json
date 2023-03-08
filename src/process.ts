@@ -1,3 +1,5 @@
+import fs from "fs";
+
 type GeneratorConfig = Readonly<{
   in: InProps,
   out: OutProps
@@ -35,11 +37,22 @@ async function generate(config: GeneratorConfig): Promise<void> {
   const { dir: outputDir } = outProps;
   const { language, mode } = outProps;
 
-  // generate code classes as object
+  // select code generator
   const codeGenerator = codeGenerators[language];
   if (codeGenerator == null) {
     throw new Error(`Language ${language} is not supported. Select one of: ${Object.keys(codeGenerators).join(", ")}.`);
   }
+  // read all files with json from inputDir
+  const inputDirJsonFilesNames = fs.readdirSync(inputDir)
+    .filter((file) => file.includes(".json"));
+  const inputDirJsonSchemas = inputDirJsonFilesNames
+    .map(fileName => ({
+      name: fileName,
+      content: JSON.parse(fs.readFileSync(`${inputDir}/${fileName}`, "utf8"))
+    }));
+
+  // generate code classes as object
+
 
   // write classes to files - one or many
 
