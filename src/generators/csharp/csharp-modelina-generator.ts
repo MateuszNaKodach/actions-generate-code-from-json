@@ -7,6 +7,12 @@ import fs from "fs";
 const generator = new CSharpFileGenerator({
   collectionType: 'List',
   autoImplementedProperties: true,
+  typeMapping: {
+    String: (props) => {
+      const format = props.constrainedModel.originalInput['format']
+      return format === 'uuid' ? 'Guid' : 'string';
+    }
+  },
   presets: [
     {
       class: {
