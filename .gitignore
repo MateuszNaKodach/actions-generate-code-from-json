@@ -98,4 +98,4 @@ Thumbs.db
 __tests__/runner/*
 lib/**/*
 .idea/*
-__tests__/out/generated/**
+__tests__/out/**
