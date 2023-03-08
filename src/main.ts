@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
 import {wait} from './wait'
 import {execSync} from 'child_process'
-import {generateTypeScriptCode} from './generators/ts/ts-generator'
+import { generateTypeScriptCode } from "./generators/typescript/typescript-modelina-generator";
 
 interface GitHubActionInput {
   readonly in: InProps

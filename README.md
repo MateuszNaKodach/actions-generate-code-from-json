@@ -126,3 +126,6 @@ all: https://github.com/asyncapi/modelina/tree/master/examples
 ### TODO:
 - Dockerfile with installed .NET and NodeJS - based for the action
 - Generator - do not focus on what is used... (modelina / quicktype)
+
+Generators - generate code
+Bundlers - take generated files and make them into a package (NuGet / NPM)
