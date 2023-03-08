@@ -2,6 +2,6 @@ import {expect, test} from '@jest/globals'
 import { generateTypeScriptCode } from "../../../../src/generators/typescript/typescript-quicktypecli-generator";
 
 
-test('sample', async () => {
+test('[Unit] Generator | TypeScript | Quicktype', async () => {
   await generateTypeScriptCode()
 })
