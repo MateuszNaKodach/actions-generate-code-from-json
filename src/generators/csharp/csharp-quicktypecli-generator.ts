@@ -24,7 +24,13 @@ export async function generateCSharpCode(): Promise<void> {
   -s schema ${inFile} 
   -o ${outDir}/${outFileName} 
   --namespace ${dotnet.namespace}
-  `);
+  --no-combine-classes
+  --framework SystemTextJson 
+  --number-type decimal
+  --any-type dynamic
+  --array-type array
+  --features just-types-and-namespace
+  `); //todo: --base-class EntityData|Object
 }
 
 function executeSystemCommand(command: string): void {

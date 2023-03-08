@@ -16,7 +16,7 @@
     },
     "candidateId": {
       "type": "string",
-      "format": "guid",
+      "format": "uuid",
       "minLength": 1
     },
     "email": {

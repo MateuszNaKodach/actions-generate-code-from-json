@@ -17,6 +17,7 @@ export async function generateTypeScriptCode(): Promise<void> {
   --nice-property-names 
   --explicit-unions 
   --prefer-types
+  --no-combine-classes
   `);
 }
 
