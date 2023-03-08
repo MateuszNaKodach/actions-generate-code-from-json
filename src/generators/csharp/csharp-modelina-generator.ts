@@ -37,4 +37,6 @@ ${renderer.indent(renderer.renderBlock(content, 2))}
   ]
 })
 
-export async function generateCSharpCode(): Promise<void> {}
+export async function generateCSharpCode(): Promise<void> {
+  
+}
