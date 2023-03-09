@@ -10,7 +10,7 @@ const generator = new CSharpFileGenerator({
   typeMapping: {
     String: (props) => {
       const format = props.constrainedModel.originalInput["format"];
-      return format === "uuid" ? "Guid" : "string";
+      return ["uuid", "guid"].includes(format) ? "Guid" : "string";
     }
   },
   presets: [

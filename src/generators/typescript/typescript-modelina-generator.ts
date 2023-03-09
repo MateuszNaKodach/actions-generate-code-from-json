@@ -38,7 +38,7 @@ export async function generateTypeScriptCode(config: CodeGeneratorConfig): Promi
   const generatedModels = await Promise.all(jsonSchemaFiles
     .map(async (file) => {
       const { name, content } = file;
-      const models = await generator.generate(content);
+      const models = await generator.generateCompleteModels(content, {});
       return { file, models };
     }));
   return {
