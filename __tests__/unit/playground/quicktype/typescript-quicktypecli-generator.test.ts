@@ -1,4 +1,10 @@
-import { executeSystemCommand } from "../shared/command-executor";
+import {expect, test} from '@jest/globals'
+import { executeSystemCommand } from "../../../../src/generators/shared/command-executor";
+
+
+test('[Unit] Generator | TypeScript | Quicktype', async () => {
+  await generateTypeScriptCode()
+})
 
 export async function generateTypeScriptCode(): Promise<void> {
   const inFile = "./__tests__/assets/*.json";

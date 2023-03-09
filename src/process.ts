@@ -1,9 +1,9 @@
 import { CodeGenerator } from "./generators/shared/code-generator";
-import { generateCSharpCodeUsingModelina } from "./generators/csharp/csharp-modelina-generator";
+import { generateCSharpCodeUsingModelina } from "./generators/csharp-modelina-generator";
 import { GeneratorParams } from "./process-params";
 import { writeGeneratedCodeToDir } from "./generators/shared/code-to-file-writer";
 import { readJsonSchemasFromDir } from "./generators/shared/schema-from-file-reader";
-import { generateTypeScriptCode } from "./generators/typescript/typescript-modelina-generator";
+import { generateTypeScriptCode } from "./generators/typescript-modelina-generator";
 import { createDotNetPackage } from "./bundlers/csharp/csharp-dotnet-nuget-classlib-bundler";
 import { createNpmPackage } from "./bundlers/typescript/typescript-npm-package-bundler";
 

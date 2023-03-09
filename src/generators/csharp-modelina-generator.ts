@@ -2,7 +2,7 @@ import {
   CSharpFileGenerator,
   ConstrainedDictionaryModel
 } from "@asyncapi/modelina";
-import { CodeGeneratorConfig, CodeGeneratorResult } from "../shared/code-generator";
+import { CodeGeneratorConfig, CodeGeneratorResult } from "./shared/code-generator";
 
 const generator = new CSharpFileGenerator({
   collectionType: "List",

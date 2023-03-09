@@ -1,7 +1,7 @@
 import {
   TypeScriptGenerator, TypeScriptOptions
 } from "@asyncapi/modelina";
-import { CodeGeneratorConfig, CodeGeneratorResult } from "../shared/code-generator";
+import { CodeGeneratorConfig, CodeGeneratorResult } from "./shared/code-generator";
 import { TypeScriptObjectRenderer } from "@asyncapi/modelina/lib/types/generators/typescript/TypeScriptObjectRenderer";
 import { InterfacePresetType } from "@asyncapi/modelina/lib/types/generators/typescript/TypeScriptPreset";
 

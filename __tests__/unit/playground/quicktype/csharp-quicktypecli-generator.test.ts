@@ -1,6 +1,15 @@
-import { executeSystemCommand } from "../shared/command-executor";
+import {expect, test} from '@jest/globals'
+import { executeSystemCommand } from "../../../../src/generators/shared/command-executor";
 
-// todo: three steps (model), then writing to file (one or many)
+/**
+ * I was trying to use Quicktype, but changing generated code is a nightmare.
+ * Like: change partial class to record - almost impossible.
+ * + all schemas in single file
+ */
+test('[Unit] Generator | CSharp | QuickType', async () => {
+  await generateCSharpCode()
+})
+
 export async function generateCSharpCode(): Promise<void> {
   const inFile = "./__tests__/assets/*.json";
   const outDir = "./__tests__/out/message-schema/generated/csharp/quicktype";
@@ -12,12 +21,9 @@ export async function generateCSharpCode(): Promise<void> {
 
   executeSystemCommand(`mkdir -p ${outDir}`);
   executeSystemCommand(`rm -rf ${outDir}/*`);
-  
-  // todo: move to bundler + version update
+
   executeSystemCommand(`dotnet new classlib -o ${outDir} -n ${dotnet.classlib} --no-restore`);
   executeSystemCommand(`rm ${outDir}/Class1.cs`);
-  
-  //
   
   executeSystemCommand(`
   quicktype 
