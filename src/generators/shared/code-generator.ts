@@ -1,12 +1,13 @@
-import { OutputModel } from "@asyncapi/modelina";
+import {OutputModel} from '@asyncapi/modelina'
 
 export type CodeGeneratorConfig = {
-  jsonSchemaFiles: { name: string, content: any }[];
+  jsonSchemaFiles: {name: string; content: any}[]
 }
 
 export type CodeGeneratorResult = {
-  generated: { file: { name: string, content: any }, models: OutputModel[] }[];
+  generated: {file: {name: string; content: any}; models: OutputModel[]}[]
 }
 
-
-export type CodeGenerator = (config: CodeGeneratorConfig) => Promise<CodeGeneratorResult>;
+export type CodeGenerator = (
+  config: CodeGeneratorConfig
+) => Promise<CodeGeneratorResult>

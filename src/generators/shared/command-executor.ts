@@ -1,5 +1,5 @@
-import cp from "child_process";
+import cp from 'child_process'
 
 export function executeSystemCommand(command: string): void {
-  cp.execSync(command.replace(/(\r\n|\n|\r)/gm, ""));
+  cp.execSync(command.replace(/(\r\n|\n|\r)/gm, ''))
 }
