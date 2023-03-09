@@ -11,7 +11,10 @@
     "lint": "eslint src/**/*.ts",
     "package": "ncc build --source-map --license licenses.txt -e typescript",
     "test": "jest",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "all": "npm run build && npm run format && npm run lint && npm run package && npm test",
+    "cli": "node dist/index.js",
+    "cli:example:csharp": "node dist/index.js  generate-code ./__tests__/assets ./__tests__/out/message-schema/generated/csharp/process csharp JustJoinIt.Services.CandidateProfile.Contracts.Messages.Events 0.0.1",
+    "cli:example:typescript": "node dist/index.js  generate-code ./__tests__/assets ./__tests__/out/message-schema/generated/typescript/process typescript @justjoinit/services-candidateprofile-contracts-messages-events 0.0.1"
   },
   "repository": {
     "type": "git",
@@ -25,6 +28,7 @@
   "license": "MIT",
   "dependencies": {
     "@asyncapi/modelina": "^1.2.1",
+    "commander": "^10.0.0",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
