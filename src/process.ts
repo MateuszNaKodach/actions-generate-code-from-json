@@ -1,4 +1,6 @@
 import fs from "fs";
+import { CodeGenerator } from "./generators/shared/code-generator";
+import { generateCSharpCodeUsingModelina } from "./generators/csharp/csharp-modelina-generator";
 
 type GeneratorConfig = Readonly<{
   in: InProps,
@@ -26,12 +28,12 @@ type OutProps = Readonly<
     )
 >
 
-const codeGenerators = {
-  "typescript": {},
-  "csharp": {}
+const codeGenerators: Record<string, CodeGenerator> = {
+  //"typescript": {},
+  "csharp": generateCSharpCodeUsingModelina
 };
 
-async function generate(config: GeneratorConfig): Promise<void> {
+export async function generate(config: GeneratorConfig): Promise<void> {
   const { in: inProps, out: outProps } = config;
   const { dir: inputDir } = inProps;
   const { dir: outputDir } = outProps;
@@ -52,7 +54,8 @@ async function generate(config: GeneratorConfig): Promise<void> {
     }));
 
   // generate code classes as object
-
+  const generatedResult = await codeGenerator({ jsonSchemaFiles: inputDirJsonSchemas });
+  console.log(generatedResult);
 
   // write classes to files - one or many
 

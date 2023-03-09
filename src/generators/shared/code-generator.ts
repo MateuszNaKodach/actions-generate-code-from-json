@@ -1,5 +1,5 @@
 export type CodeGeneratorConfig = {
-  jsonSchemaFiles: { name: string, content: string };
+  jsonSchemaFiles: { name: string, content: string }[];
 }
 
 export type CodeGeneratorResult = {
