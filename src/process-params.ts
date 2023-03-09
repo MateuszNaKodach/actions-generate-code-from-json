@@ -13,12 +13,12 @@ export type OutProps = Readonly<
   (
     {
       language: "csharp",
-      mode: "just-files" | "package",
+      mode: { type: "just-files" } | { type: "package", name: string, version: string },
     }
     |
     {
       language: "typescript"
-      mode: "just-files" | "package",
+      mode: { type: "just-files" } | { type: "package", name: string, version: string },
     }
     )
 >

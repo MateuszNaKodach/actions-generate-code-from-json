@@ -52,6 +52,9 @@ export async function generateCSharpCodeUsingModelina(config: CodeGeneratorConfi
     .map(async (file) => {
       const { name, content } = file;
       const namespace = content["x-csharp-namespace"];
+      if (!namespace) {
+        throw new Error(`Missing x-csharp-namespace property for ${name}`);
+      }
       const models = await generator.generateCompleteModels(content, { namespace });
       return { file, models };
     }));

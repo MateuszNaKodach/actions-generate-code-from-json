@@ -35,7 +35,6 @@ async function run(): Promise<void> {
 
     // check langugage - if csharp and option package is enabled
     // validate if
-    await generateTypeScriptCode()
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }

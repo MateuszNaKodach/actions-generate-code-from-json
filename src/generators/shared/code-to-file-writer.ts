@@ -16,8 +16,6 @@ export async function writeGeneratedCodeToDir({
                                                 language
                                               }: GeneratorParams["out"], generatorResult: CodeGeneratorResult): Promise<void> {
   executeSystemCommand(`mkdir -p ${dir}`);
-  executeSystemCommand(`rm -rf ${dir}/*`);
-
   // await Promise.all(
   //   generatorResult.generated.map(async (generated) => {
   //     await fs.writeFile(`${dir}/${generated.name}`, generated.code, "utf8");

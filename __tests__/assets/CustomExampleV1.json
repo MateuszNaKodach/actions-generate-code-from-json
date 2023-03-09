@@ -154,5 +154,6 @@
     }
   },
   "x-class-name": "InteractionContentSearchCriteriaUpdatedV1",
-  "x-domain": "Interaction"
+  "x-domain": "Interaction",
+  "x-csharp-namespace": "Interaction"
 }

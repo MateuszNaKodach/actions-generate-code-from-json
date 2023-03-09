@@ -10,7 +10,7 @@ test("process csharp", async () => {
       dir: "./__tests__/out/message-schema/generated/csharp/process",
       language: "csharp",
       file: { mode: "one-file-per-schema" },
-      mode: "just-files"
+      mode: {type: "package", name: "JustJoinIt.Services.CandidateProfile.Contracts.Messages.Events", version: "0.0.1"}
     }
   });
 });
@@ -24,7 +24,7 @@ test("process typescript", async () => {
       dir: "./__tests__/out/message-schema/generated/typescript/process",
       language: "typescript",
       file: { mode: "one-file-per-schema" },
-      mode: "just-files"
+      mode: {type: "package", name: "JustJoinIt.Services.CandidateProfile.Contracts.Messages.Events", version: "0.0.1"}
     }
   });
 });
