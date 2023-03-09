@@ -10,6 +10,6 @@ export async function createDotNetPackage(out: GeneratorParams["out"]): Promise<
   
   executeSystemCommand(`mkdir -p ${outDir}`);
   executeSystemCommand(`rm -rf ${outDir}/*`);
-  executeSystemCommand(`dotnet new classlib -o ${outDir} -n ${classlibName} --no-restore`);
-  executeSystemCommand(`rm ${outDir}/Class1.cs`);
+  executeSystemCommand(`cp -a src/bundlers/csharp/template/. ${outDir}`);
+  executeSystemCommand(`mv ${outDir}/Template.csproj ${outDir}/${classlibName}.csproj`);
 }
