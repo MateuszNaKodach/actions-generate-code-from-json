@@ -24,7 +24,7 @@ test("process typescript", async () => {
       dir: "./__tests__/out/message-schema/generated/typescript/process",
       language: "typescript",
       file: { mode: "one-file-per-schema" },
-      mode: {type: "package", name: "JustJoinIt.Services.CandidateProfile.Contracts.Messages.Events", version: "0.0.1"}
+      mode: {type: "package", name: "@justjoinit/services-candidateprofile-contracts-messages-events", version: "0.0.1"}
     }
   });
 });
