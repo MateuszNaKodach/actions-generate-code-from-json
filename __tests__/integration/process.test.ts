@@ -14,3 +14,17 @@ test("process csharp", async () => {
     }
   });
 });
+
+test("process typescript", async () => {
+  await generate({
+    in: {
+      dir: "./__tests__/assets"
+    },
+    out: {
+      dir: "./__tests__/out/message-schema/generated/typescript/process",
+      language: "typescript",
+      file: { mode: "one-file-per-schema" },
+      mode: "just-files"
+    }
+  });
+});

@@ -1,4 +1,5 @@
 import * as cp from "child_process";
+import { executeSystemCommand } from "../shared/command-executor";
 
 // todo: three steps (model), then writing to file (one or many)
 export async function generateTypeScriptCode(): Promise<void> {
@@ -19,8 +20,4 @@ export async function generateTypeScriptCode(): Promise<void> {
   --prefer-types
   --no-combine-classes
   `);
-}
-
-function executeSystemCommand(command: string): void {
-  cp.execSync(command.replace(/(\r\n|\n|\r)/gm, ""));
 }

@@ -1,47 +1,25 @@
-import {TypeScriptFileGenerator} from '@asyncapi/modelina'
-import * as fs from 'fs';
+import {
+  TypeScriptGenerator
+} from "@asyncapi/modelina";
+import { CodeGeneratorConfig, CodeGeneratorResult } from "../shared/code-generator";
 
-const generator = new TypeScriptFileGenerator({
-  modelType: 'class',
+
+const generator = new TypeScriptGenerator({
+  modelType: "interface",
   renderTypes: true,
-  enumType: 'union'
-})
+  enumType: "union",
+  mapType: "indexedObject"
+});
 
-export async function generateTypeScriptCode(): Promise<void> {
-  const outDir = "./__tests__/out/message-schema/generated/typescript/modelina";
-  const inDir = "./__tests__/assets";
-  //const inFile = "*.json" //regex / patrern? how?
-  const outFileName = "candidateprofile-external-events.ts";
-  
-  const allJsonFiles = fs.readdirSync(inDir).filter((file) => file.includes(".json"));
-  // const models = await codeGenerator.generate(jsonSchemaDraft7)
-  // for (const model of models) {
-  //   console.log(model.result)
-  // }
-  // await fileGenerator.generateCompleteModels(models, {});
-  const allJsonSchemas = allJsonFiles.map(file => [file, JSON.parse(fs.readFileSync(`${inDir}/${file}`, 'utf8'))]);
-
-  // function toRecord(allJsonSchemas: string[][]) {
-  //   return allJsonSchemas.reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
-  // }
-
-  // all json schemas to object with filename as key and schema as value
-  
-  
-  // allJsonSchemas
-  //   .map(async ([fileName, jsonSchema]) => {return await generator.generate(jsonSchema);})
-  //   .map(async (model) => { return await generator.generateToFiles(model, outDir, {exportType: 'default'});})
-
-  await Promise.all(
-    allJsonSchemas.map(async ([fileName, jsonSchema]) => {
-      const models = await generator.generateToFiles(
-        jsonSchema,
-        outDir,
-        {exportType: 'default'}
-      )
-      for (const model of models) {
-        console.log(model.result)
-      }
-    })
-  );
+export async function generateTypeScriptCode(config: CodeGeneratorConfig): Promise<CodeGeneratorResult> {
+  const jsonSchemaFiles = config.jsonSchemaFiles;
+  const generatedModels = await Promise.all(jsonSchemaFiles
+    .map(async (file) => {
+      const { name, content } = file;
+      const models = await generator.generateCompleteModels(content, { exportType: "named" });
+      return { file, models };
+    }));
+  return {
+    generated: generatedModels
+  };
 }

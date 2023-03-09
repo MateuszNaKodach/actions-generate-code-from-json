@@ -3,10 +3,11 @@ import { generateCSharpCodeUsingModelina } from "./generators/csharp/csharp-mode
 import { GeneratorParams } from "./process-params";
 import { writeGeneratedCodeToDir } from "./generators/shared/code-to-file-writer";
 import { readJsonSchemasFromDir } from "./generators/shared/schema-from-file-reader";
+import { generateTypeScriptCode } from "./generators/typescript/typescript-modelina-generator";
 
 
 const codeGenerators: Record<string, CodeGenerator> = {
-  //"typescript": {},
+  "typescript": generateTypeScriptCode,
   "csharp": generateCSharpCodeUsingModelina
 };
 

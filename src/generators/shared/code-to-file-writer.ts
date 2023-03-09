@@ -5,9 +5,15 @@ import { executeSystemCommand } from "./command-executor";
 import * as path from "path";
 import { FileHelpers } from "@asyncapi/modelina";
 
+const languageToExtension = {
+  "csharp": "cs",
+  "typescript": "ts"
+};
+
 export async function writeGeneratedCodeToDir({
                                                 dir,
-                                                file
+                                                file,
+                                                language
                                               }: GeneratorParams["out"], generatorResult: CodeGeneratorResult): Promise<void> {
   executeSystemCommand(`mkdir -p ${dir}`);
   executeSystemCommand(`rm -rf ${dir}/*`);
@@ -27,7 +33,7 @@ export async function writeGeneratedCodeToDir({
         for (const outputModel of generatedModels) {
           const filePath = path.resolve(
             dir,
-            `${outputModel.modelName.replaceAll("Minus", "")}.cs`
+            `${outputModel.modelName.replaceAll("Minus", "")}.${languageToExtension[language]}`
           );
           await FileHelpers.writerToFileSystem(
             outputModel.result,
