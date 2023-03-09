@@ -14,8 +14,12 @@ export async function createNpmPackage(out: GeneratorParams["out"]): Promise<voi
   executeSystemCommand(`rm -rf ${outDir}/*`);
   executeSystemCommand(`cp -a src/bundlers/typescript/template/. ${outDir}`);
 
+  await setPackageData(outDir, packageName, packageVersion);
+}
+
+async function setPackageData(outDir: string, packageName: string, packageVersion: string) {
   const packageJsonpath = `${outDir}/package.json`;
-  const packageJson = JSON.parse(await fs.readFile(packageJsonpath, 'utf8'));
+  const packageJson = JSON.parse(await fs.readFile(packageJsonpath, "utf8"));
   packageJson.name = packageName;
   packageJson.version = packageVersion;
   await fs.writeFile(packageJsonpath, JSON.stringify(packageJson));
