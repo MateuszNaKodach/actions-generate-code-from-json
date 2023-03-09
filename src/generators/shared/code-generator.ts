@@ -1,9 +1,11 @@
+import { OutputModel } from "@asyncapi/modelina";
+
 export type CodeGeneratorConfig = {
-  jsonSchemaFiles: { name: string, content: string }[];
+  jsonSchemaFiles: { name: string, content: any }[];
 }
 
 export type CodeGeneratorResult = {
-  generated: { jsonSchemaFile: { name: string, content: string }, code: { content: string } }[];
+  generated: { file: { name: string, content: any }, models: OutputModel[] }[];
 }
 
 

@@ -1,63 +1,24 @@
-import fs from "fs";
 import { CodeGenerator } from "./generators/shared/code-generator";
 import { generateCSharpCodeUsingModelina } from "./generators/csharp/csharp-modelina-generator";
+import { GeneratorParams } from "./process-params";
+import { writeGeneratedCodeToDir } from "./generators/shared/code-to-file-writer";
+import { readJsonSchemasFromDir } from "./generators/shared/schema-from-file-reader";
 
-type GeneratorConfig = Readonly<{
-  in: InProps,
-  out: OutProps
-}>
-
-type InProps = Readonly<{
-  dir: string;
-}>
-
-type OutProps = Readonly<
-  {
-    dir: string
-  } &
-  (
-    {
-      language: "csharp",
-      mode: "just-files" | "package",
-    }
-    |
-    {
-      language: "typescript"
-      mode: "just-files" | "package",
-    }
-    )
->
 
 const codeGenerators: Record<string, CodeGenerator> = {
   //"typescript": {},
   "csharp": generateCSharpCodeUsingModelina
 };
 
-export async function generate(config: GeneratorConfig): Promise<void> {
+export async function generate(config: GeneratorParams): Promise<void> {
   const { in: inProps, out: outProps } = config;
-  const { dir: inputDir } = inProps;
-  const { dir: outputDir } = outProps;
   const { language, mode } = outProps;
 
-  // select code generator
-  const codeGenerator = codeGenerators[language];
-  if (codeGenerator == null) {
-    throw new Error(`Language ${language} is not supported. Select one of: ${Object.keys(codeGenerators).join(", ")}.`);
-  }
-  // read all files with json from inputDir
-  const inputDirJsonFilesNames = fs.readdirSync(inputDir)
-    .filter((file) => file.includes(".json"));
-  const inputDirJsonSchemas = inputDirJsonFilesNames
-    .map(fileName => ({
-      name: fileName,
-      content: JSON.parse(fs.readFileSync(`${inputDir}/${fileName}`, "utf8"))
-    }));
-
-  // generate code classes as object
-  const generatedResult = await codeGenerator({ jsonSchemaFiles: inputDirJsonSchemas });
-  console.log(generatedResult);
-
-  // write classes to files - one or many
+  const codeGenerator = selectCodeGeneratorFor(language);
+  const inputDirJsonSchemas = await readJsonSchemasFromDir(inProps);
+  const generatorResult = await codeGenerator({ jsonSchemaFiles: inputDirJsonSchemas });
+  console.log(generatorResult);
+  await writeGeneratedCodeToDir(outProps, generatorResult);
 
   // create package and put classes inside
 
@@ -73,4 +34,12 @@ export async function generate(config: GeneratorConfig): Promise<void> {
   // } else if (mode === "package") {
   //   await codeGenerator.writePackage(files, outputDir);
   // }
+}
+
+function selectCodeGeneratorFor(language: "csharp" | "typescript") {
+  const codeGenerator = codeGenerators[language];
+  if (codeGenerator == null) {
+    throw new Error(`Language ${language} is not supported. Select one of: ${Object.keys(codeGenerators).join(", ")}.`);
+  }
+  return codeGenerator;
 }

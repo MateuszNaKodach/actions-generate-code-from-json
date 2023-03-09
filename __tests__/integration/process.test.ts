@@ -9,6 +9,7 @@ test("process csharp", async () => {
     out: {
       dir: "./__tests__/out/message-schema/generated/csharp/process",
       language: "csharp",
+      file: { mode: "one-file-per-schema" },
       mode: "just-files"
     }
   });

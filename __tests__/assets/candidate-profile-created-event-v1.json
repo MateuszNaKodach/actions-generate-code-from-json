@@ -30,5 +30,6 @@
     }
   },
   "definitions": {},
-  "x-message-version": "1"
+  "x-message-version": "1",
+  "x-csharp-namespace": "JustJoinIt.Services.CandidateProfile.Contracts.Messages.Events"
 }
