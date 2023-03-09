@@ -18,17 +18,13 @@
     "url": "git+https://github.com/actions/typescript-action.git"
   },
   "keywords": [
-    "actions",
     "node",
     "setup"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.0",
     "@asyncapi/modelina": "^1.2.1",
-    "quicktype": "^23.0.12",
-    "quicktype-core": "^23.0.12",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
